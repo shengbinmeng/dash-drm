@@ -6,7 +6,8 @@
     <!-- Your application source: -->
     <script>
 		// myapp.js
-		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one-widevine/dash.mpd';
+		var licenseServer = '//cwip-shaka-proxy.appspot.com/no_auth';
 		
 		function initApp() {
 		  // Install built-in polyfills to patch browser incompatibilities.
@@ -32,6 +33,11 @@
 
 		  // Listen for error events.
 		  player.addEventListener('error', onErrorEvent);
+		  player.configure({
+		    drm: {
+		      servers: { 'com.widevine.alpha': licenseServer }
+		    }
+		  });
 
 		  // Try to load a manifest.
 		  // This is an asynchronous process.
