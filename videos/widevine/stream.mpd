@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<MPD mediaPresentationDuration="PT8.000S" minBufferTime="PT4.44S" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:cenc="urn:mpeg:cenc:2013">
+  <!-- Created with Bento4 mp4-dash.py, VERSION=1.8.0-621 -->
+  <Period>
+    <!-- Video -->
+    <AdaptationSet maxHeight="360" maxWidth="640" mimeType="video/mp4" minHeight="360" minWidth="640" segmentAlignment="true" startWithSAP="1">
+      <!-- MPEG Common Encryption -->
+      <ContentProtection cenc:default_KID="abba271e-8bcf-552b-bd2e-86a434a9a5d9" schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"/>
+      <!-- Widevine -->
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAVHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADQIARIQq7onHovPVSu9LoakNKml2RoNd2lkZXZpbmVfdGVzdCIPdGVzdCBjb250ZW50IGlk</cenc:pssh>
+      </ContentProtection>
+      <SegmentTemplate duration="4440" initialization="$RepresentationID$/init.mp4" media="$RepresentationID$/seg-$Number$.m4s" startNumber="1" timescale="1000"/>
+      <Representation bandwidth="415755" codecs="avc1.64001E" frameRate="25" height="360" id="video/avc1" scanType="progressive" width="640"/>
+    </AdaptationSet>
+    <!-- Audio -->
+    <AdaptationSet lang="en" mimeType="audio/mp4" segmentAlignment="true" startWithSAP="1">
+      <!-- MPEG Common Encryption -->
+      <ContentProtection cenc:default_KID="abba271e-8bcf-552b-bd2e-86a434a9a5d9" schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"/>
+      <!-- Widevine -->
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAVHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADQIARIQq7onHovPVSu9LoakNKml2RoNd2lkZXZpbmVfdGVzdCIPdGVzdCBjb250ZW50IGlk</cenc:pssh>
+      </ContentProtection>
+      <SegmentTemplate duration="4440" initialization="$RepresentationID$/init.mp4" media="$RepresentationID$/seg-$Number$.m4s" startNumber="1" timescale="1000"/>
+      <Representation audioSamplingRate="44100" bandwidth="130000" codecs="mp4a.40.2" id="audio/en/mp4a">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>

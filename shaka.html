@@ -2,12 +2,14 @@
 <html>
   <head>
     <!-- Shaka Player compiled library: -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.3.2/shaka-player.compiled.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/2.3.2/shaka-player.compiled.js"></script>
     <!-- Your application source: -->
     <script>
 		// myapp.js
 		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one-widevine/dash.mpd';
 		var licenseServer = '//cwip-shaka-proxy.appspot.com/no_auth';
+		var manifestUri = './videos/widevine/stream.mpd';
+		var licenseServer = '//cwip-shaka-proxy.appspot.com/header_auth';
 		
 		function initApp() {
 		  // Install built-in polyfills to patch browser incompatibilities.
@@ -33,10 +35,19 @@
 
 		  // Listen for error events.
 		  player.addEventListener('error', onErrorEvent);
+
 		  player.configure({
 		    drm: {
 		      servers: { 'com.widevine.alpha': licenseServer }
 		    }
+		  });
+
+		  player.getNetworkingEngine().registerRequestFilter(function(type, request) {
+			// Only add headers to license requests:
+			if (type == shaka.net.NetworkingEngine.RequestType.LICENSE) {
+			  // This is the specific header name and value the server wants:
+			  request.headers['CWIP-Auth-Header'] = 'VGhpc0lzQVRlc3QK';
+			}
 		  });
 
 		  // Try to load a manifest.

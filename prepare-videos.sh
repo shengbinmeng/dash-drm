@@ -16,4 +16,9 @@ ffmpeg -i in.mp4 -hls_enc 1 -hls_enc_key 0123456789abcdef -hls_enc_key_url out_k
 # DASH
 ffmpeg -i in.mp4 -f dash out.mpd
 
+# DASH with Widevide DRM. See https://www.bento4.com/developers/dash/encryption-and-drm/.
+# mp4fragment in.mp4 in-fragment.mp4
+# mp4dash --widevine-header provider:widevine_test#content_id:7465737420636f6e74656e74206964 --encryption-key abba271e8bcf552bbd2e86a434a9a5d9:69eaa802a6763af979e8d1940fb88392 in-fragment.mp4
+# mv output widevine
+
 cd -
